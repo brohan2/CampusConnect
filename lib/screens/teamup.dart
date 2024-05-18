@@ -8,7 +8,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:campusconnect/utilities/add_project.dart';
 
-
 class Home extends StatelessWidget {
   const Home({
     super.key,
@@ -18,7 +17,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     double drawerHeaderHeight =
         Platform.isAndroid ? 100.0 : 150.0; // Different height for Android
-        
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Campus Connect"),
