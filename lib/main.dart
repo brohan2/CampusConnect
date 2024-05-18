@@ -1,10 +1,10 @@
 import 'package:campusconnect/screens/home.dart';
-import 'package:campusconnect/utilities/login.dart';
-import 'package:campusconnect/utilities/settings.dart';
+import 'package:campusconnect/screens/login.dart';
+import 'package:campusconnect/screens/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:campusconnect/utilities/connect.dart';
-import 'package:campusconnect/utilities/profile.dart';
-import 'package:campusconnect/utilities/threads.dart';
+import 'package:campusconnect/screens/connect.dart';
+import 'package:campusconnect/screens/profile.dart';
+import 'package:campusconnect/screens/threads.dart';
 
 void main() {
   runApp(const MyApp());
