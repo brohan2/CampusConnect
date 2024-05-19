@@ -1,4 +1,6 @@
+import 'package:campusconnect/Firebase/firebase_auth.dart';
 import 'package:campusconnect/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -7,21 +9,36 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
-  void _register() {
+  void _register() async{
     if (_formKey.currentState!.validate()) {
       // Perform authentication (e.g., API call)
-      Navigator.pushReplacement(
+    String email = _emailController.text;
+    String pass = _passwordController.text;
+    String cpass = _confirmPasswordController.text;
+ 
+    User? user = await _auth.signUpWithEmailandPassword(email, pass);
+
+    if(user!= null){
+        Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) => Home()), // Replace with your HomePage widget
       );
+    }
+    else{
+      print("Some error happend");
+    }
+    
     }
   }
 
@@ -230,4 +247,5 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
 }

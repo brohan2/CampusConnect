@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -74,6 +75,8 @@ class _ProfileState extends State<Profile> {
             }),
             _buildProfileListItem(Icons.logout, 'Logout', () {
               // Perform logout action
+              FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, '/');
             }),
           ],
         ),

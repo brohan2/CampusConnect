@@ -1,4 +1,6 @@
+import 'package:campusconnect/Firebase/firebase_auth.dart';
 import 'package:campusconnect/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:campusconnect/screens/sign_up.dart';
 
@@ -8,19 +10,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+    final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
-  void _login() {
+  void _login() async{
+    print(_formKey.currentContext);
     if (_formKey.currentState!.validate()) {
       // Perform authentication (e.g., API call)
-      Navigator.pushReplacement(
+          String email = _emailController.text;
+          String pass = _passwordController.text;
+
+  User? user = await _auth.signInWithEmailandPassword(email, pass);
+
+if(user != null ) { 
+  print("login successfully");
+  
+   Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) => Home()), // Replace with your HomePage widget
       );
+}
+else{
+  print("some error occured");
+}
     }
   }
 
@@ -126,11 +145,17 @@ class _LoginPageState extends State<LoginPage> {
                               TextFormField(
                                 controller: _passwordController,
                                 validator: (value) {
+                                    
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your password';
                                   }
                                   return null;
                                 },
+                                // onSaved: (value){
+                                //   setState(() {
+                                //     fullna
+                                //   });
+                                // },
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   hintText: 'Password',
