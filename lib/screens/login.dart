@@ -16,6 +16,13 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+void dispose(){
+  _emailController.dispose();
+  _passwordController.dispose();
+  super.dispose();
+}
+
+
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 

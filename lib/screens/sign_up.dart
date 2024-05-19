@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:campusconnect/Firebase/firebase_auth.dart';
 import 'package:campusconnect/screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +20,14 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
+
+void dispose(){
+  _emailController.dispose();
+  _passwordController.dispose();
+  _confirmPasswordController.dispose();
+  super.dispose();
+}
+
 
   void _register() async{
     if (_formKey.currentState!.validate()) {
