@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCmFjvFlfnEtXpw0roo3r4A6U5_39Cs_No</string>
+	<key>GCM_SENDER_ID</key>
+	<string>940405754676</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.campusconnect</string>
+	<key>PROJECT_ID</key>
+	<string>campusconnect-beb93</string>
+	<key>STORAGE_BUCKET</key>
+	<string>campusconnect-beb93.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:940405754676:ios:c6cd48dc2af34eaa027361</string>
+</dict>
+</plist>
