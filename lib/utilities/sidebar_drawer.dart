@@ -36,6 +36,13 @@ class SidebarDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/home');
             },
           ),
+           ListTile(
+            leading: Icon(Icons.group),
+            title: Text('Team up'),
+            onTap: () {
+              Navigator.pushNamed(context, '/teamup');
+            },
+          ),
           ListTile(
             leading: Icon(Icons.connect_without_contact),
             title: Text('Connect'),

@@ -1,4 +1,4 @@
-import 'package:campusconnect/utilities/nav_bar.dart';
+import 'package:campusconnect/utilities/topnavbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBarDefault(),
-        drawer: sidebar_drawer(drawerHeaderHeight: drawerHeaderHeight),
+        drawer: SidebarDrawer(drawerHeaderHeight: drawerHeaderHeight),
         
       body: Column(
         children: [

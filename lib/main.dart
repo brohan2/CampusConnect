@@ -1,6 +1,7 @@
 import 'package:campusconnect/screens/home.dart';
 import 'package:campusconnect/screens/login.dart';
 import 'package:campusconnect/screens/settings.dart';
+import 'package:campusconnect/screens/teamup.dart';
 import 'package:flutter/material.dart';
 import 'package:campusconnect/screens/connect.dart';
 import 'package:campusconnect/screens/profile.dart';
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp> {
         '/threads': (context) => Threads(),
         '/profile': (context) => Profile(),
         '/settings': (context) => settingsPage(),
+        '/teamup': (context)=> Teamup(),
       },
       debugShowCheckedModeBanner: false,
     );
