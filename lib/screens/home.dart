@@ -1,4 +1,6 @@
+import 'package:campusconnect/screens/connect.dart';
 import 'package:campusconnect/screens/teamup.dart';
+import 'package:campusconnect/screens/threads.dart';
 import 'package:campusconnect/utilities/topnavbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,8 @@ class Home extends StatelessWidget {
           SizedBox(height: 20,),
           LandingPage(title: "Teamup",color:"blue"),
           LandingPage(title : "Connections",color:"red"),
+          LandingPage(title : "Thread",color:"red"),
+
         ],
       ),
     );
@@ -47,15 +51,31 @@ class LandingPage extends StatelessWidget {
             onTap: () {
               // Handle container click
               print('$title clicked!');
-            Navigator.push(
+              switch(title){
+                case "Teamup":
+                  Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Teamup()),
-                );            },
+                );   
+                case "Connections":
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Connect()),
+                );   
+                case "Thread":
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Threads()),
+                );
+               
+              }
+                   },
             child: Container(
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 26, 18, 134),
+
+                color: Colors.blue,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
