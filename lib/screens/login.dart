@@ -1,6 +1,6 @@
 import 'package:campusconnect/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:campusconnect/utilities/sign_up.dart';
+import 'package:campusconnect/screens/sign_up.dart';
 
 class LoginPage extends StatefulWidget {
   @override
