@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  final Map<String, dynamic> user = {
+    'name': 'Alice Johnson',
+    'skills': ['Python', 'Flutter', 'Dart'],
+    'experience': [
+      {
+        'title': 'Intern',
+        'company': 'Tech Corp',
+        'duration': 'June 2023 - Present'
+      },
+      {
+        'title': 'Research Assistant',
+        'company': 'University Lab',
+        'duration': 'Sep 2022 - May 2023'
+      }
+    ],
+    'connections': ['Bob', 'Charlie', 'Dana'],
+  };
+
+  final TextEditingController _skillController = TextEditingController();
+  final TextEditingController _connectionController = TextEditingController();
+  final TextEditingController _experienceTitleController =
+      TextEditingController();
+  final TextEditingController _experienceCompanyController =
+      TextEditingController();
+  final TextEditingController _experienceDurationController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,332 +52,319 @@ class _ProfileState extends State<Profile> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          padding: const EdgeInsets.all(16.0),
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('images/Designer.png'),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'John Doe',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'johndoe@example.com',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            SizedBox(height: 20),
-            _buildProfileListItem(Icons.person, 'Edit Profile', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EditProfile()),
-              );
-            }),
-            _buildProfileListItem(Icons.security, 'Privacy Settings', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PrivacySettings()),
-              );
-              // Navigate to Privacy Settings screen
-            }),
-            _buildProfileListItem(Icons.notifications, 'Notifications', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Notifications()),
-              );
-              // Navigate to Notifications screen
-            }),
-            _buildProfileListItem(Icons.help, 'Help & Support', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HelpAndSupport()),
-              );
-              // Navigate to Help & Support screen
-            }),
-            _buildProfileListItem(Icons.logout, 'Logout', () {
-              // Perform logout action
-            }),
+            _buildProfileHeader(),
+            _buildSkillsSection(),
+            _buildExperienceSection(),
+            _buildConnectionsSection(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildProfileListItem(
-      IconData icon, String title, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
-        trailing: Icon(Icons.arrow_forward_ios),
-      ),
-    );
-  }
-}
-
-class EditProfile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Edit Profile'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(200)),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.restore),
-            onPressed: () {
-              // Reset profile
-            },
-          ),
-        ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'First Name',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your first name',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Last Name',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your last name',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Email',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your email',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Mobile',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your mobile number',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Skills',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your skills',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Internships',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your internships',
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Job Title',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Enter your job title',
-              ),
-            ),
-            SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: 100, // Adjust width as needed
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Save changes and navigate back to profile
-                    Navigator.pop(context);
-                  },
-                  child: Text('Save'),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PrivacySettings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Privacy Settings'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(200)),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSwitchTile('Allow location sharing', false),
-            _buildSwitchTile('Allow email notifications', true),
-            _buildSwitchTile('Allow push notifications', true),
-            // Add more privacy settings as needed
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSwitchTile(String title, bool initialValue) {
-    return SwitchListTile(
-      title: Text(title),
-      value: initialValue,
-      onChanged: (value) {
-        // Handle privacy setting change
-      },
-    );
-  }
-}
-
-class Notifications extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Notifications'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(200)),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSwitchTile('Email notifications', true),
-            _buildSwitchTile('Push notifications', true),
-            _buildSwitchTile('In-app notifications', true),
-            // Add more notification settings as needed
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSwitchTile(String title, bool initialValue) {
-    return SwitchListTile(
-      title: Text(title),
-      value: initialValue,
-      onChanged: (value) {
-        // Handle notification setting change
-      },
-    );
-  }
-}
-
-class HelpAndSupport extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Help & Support'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(200)),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildFAQItem('How to reset password?', 'FAQ1'),
-            _buildFAQItem('How to contact support?', 'FAQ2'),
-            _buildFAQItem('How to use the app?', 'FAQ3'),
-            // Add more FAQ items as needed
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFAQItem(String question, String answer) {
-    return ExpansionTile(
-      title: Text(
-        question,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
+  Widget _buildProfileHeader() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        CircleAvatar(
+          radius: 50,
+          backgroundColor: Colors.orange,
           child: Text(
-            'Answer: This is the answer to $answer',
-            style: TextStyle(color: Colors.grey),
+            user['name'][0],
+            style: TextStyle(color: Colors.white, fontSize: 40),
           ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          user['name'],
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 5),
+        Text(
+          'Senior - Computer Science',
+          style: TextStyle(fontSize: 18, color: Colors.grey[700]),
         ),
       ],
+    );
+  }
+
+  Widget _buildSkillsSection() {
+    return Card(
+      surfaceTintColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 5,
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Skills',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () => _showAddSkillDialog(),
+                ),
+              ],
+            ),
+            SizedBox(height: 4),
+            Wrap(
+              spacing: 5.0,
+              children: user['skills'].map<Widget>((skill) {
+                return Chip(
+                  label: Text(skill),
+                  backgroundColor: Color.fromARGB(255, 241, 239, 235),
+                  onDeleted: () {
+                    setState(() {
+                      user['skills'].remove(skill);
+                    });
+                  },
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExperienceSection() {
+    return Card(
+      surfaceTintColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 5,
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Work Experience',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () => _showAddExperienceDialog(),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Column(
+              children: user['experience'].map<Widget>((exp) {
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(exp['title'],
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: Text('${exp['company']} - ${exp['duration']}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        user['experience'].remove(exp);
+                      });
+                    },
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildConnectionsSection() {
+    return Card(
+      surfaceTintColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 5,
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Connections',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () => _showAddConnectionDialog(),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Column(
+              children: user['connections'].map<Widget>((connection) {
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(connection),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        user['connections'].remove(connection);
+                      });
+                    },
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAddSkillDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Skill'),
+          content: TextField(
+            controller: _skillController,
+            decoration: InputDecoration(
+              labelText: 'Skill',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  user['skills'].add(_skillController.text);
+                  _skillController.clear();
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showAddConnectionDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Connection'),
+          content: TextField(
+            controller: _connectionController,
+            decoration: InputDecoration(
+              labelText: 'Connection Name',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  user['connections'].add(_connectionController.text);
+                  _connectionController.clear();
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showAddExperienceDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: _experienceTitleController,
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                ),
+              ),
+              TextField(
+                controller: _experienceCompanyController,
+                decoration: InputDecoration(
+                  labelText: 'Company',
+                ),
+              ),
+              TextField(
+                controller: _experienceDurationController,
+                decoration: InputDecoration(
+                  labelText: 'Duration',
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  user['experience'].add({
+                    'title': _experienceTitleController.text,
+                    'company': _experienceCompanyController.text,
+                    'duration': _experienceDurationController.text,
+                  });
+                  _experienceTitleController.clear();
+                  _experienceCompanyController.clear();
+                  _experienceDurationController.clear();
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

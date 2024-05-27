@@ -27,10 +27,11 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => LoginPage(),
         '/home': (context) => Home(),
         '/connect': (context) => Connect(),
-        '/threads': (context) => Threads(),
+        '/threadsPage': (context) => ThreadsPage(),
         '/profile': (context) => Profile(),
         '/settings': (context) => settingsPage(),
         '/teamup': (context)=> Teamup(),
+        
       },
       debugShowCheckedModeBanner: false,
     );

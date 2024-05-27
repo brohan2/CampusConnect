@@ -1,3 +1,4 @@
+import 'package:campusconnect/utilities/add_project.dart';
 import 'package:campusconnect/utilities/topnavbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,8 @@ class Home extends StatelessWidget {
           LandingPage(),
           LandingPage(),
         ],
-      ),
+      )
+
     );
   }
 }
