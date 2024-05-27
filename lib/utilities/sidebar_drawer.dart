@@ -47,7 +47,7 @@ class SidebarDrawer extends StatelessWidget {
             leading: Icon(Icons.forum),
             title: Text('Threads'),
             onTap: () {
-              Navigator.pushNamed(context, '/threads');
+              Navigator.pushNamed(context, '/threadsPage');
             },
           ),
           ListTile(

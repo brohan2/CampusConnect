@@ -40,25 +40,43 @@ class Home extends StatelessWidget {
       drawer: SidebarDrawer(drawerHeaderHeight: drawerHeaderHeight),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Welcome to Campus Connect',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Connect with projects and internships that match your skills and interests.',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'You can add a project here',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to AddProjectPage when button is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddProjectPage()),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      elevation: 15,
+                      backgroundColor: Color.fromARGB(0, 254, 237, 237),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      textStyle: TextStyle(fontSize: 18),
+                    ),
+                    child: Text(
+                      'Add Project',
+                      style: TextStyle(color: Color.fromARGB(255, 97, 78, 206)),
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             SearchBar1(),
             FilterButtonList(),
             Padding(
@@ -117,43 +135,6 @@ class Home extends StatelessWidget {
                   },
                 ),
               ],
-            ),
-            SizedBox(height: 20),
-            FloatingActionButton(
-              onPressed: () {
-                // Navigate to AddProjectPage when FAB is pressed
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddProjectPage()),
-                );
-              },
-              child: Icon(Icons.add),
-              backgroundColor: Colors.orange,
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'What our users say',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                '"Campus Connect has been a game-changer for my career!" - Student A',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: Text(
-                '"I found the perfect internship through Campus Connect." - Student B',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
             ),
             SizedBox(height: 20),
           ],
